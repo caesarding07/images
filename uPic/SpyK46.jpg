@@ -1,0 +1,280 @@
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Static files quick-start &mdash; Caddy Documentation</title>
+		<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/resources/images/favicon.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:400,700|Maven+Pro:400,700,900|Montserrat:400,700|PT+Mono&display=swap">
+<link rel="stylesheet" href="/resources/css/common.css">
+<script src="/resources/js/common.js"></script>
+
+<!-- General metatags -->
+<meta name="author" content="Caddy Web Server">
+<meta name="description" content="Caddy is a powerful, enterprise-ready, open source web server with automatic HTTPS written in Go">
+<meta name="theme-color" content="#5ea9a2">
+
+<!-- Open Graph tags -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://caddyserver.com/">
+<meta property="og:description" content="Caddy is a powerful, enterprise-ready, open source web server with automatic HTTPS written in Go">
+<meta property="og:image" content="https://caddyserver.com/resources/images/caddy-open-graph.jpg">
+
+<!-- Twitter card tags additive with the og: tags -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:domain" value="caddyserver.com">
+<meta name="twitter:description" value="Caddy is a powerful, enterprise-ready, open source web server with automatic HTTPS written in Go">
+<meta name="twitter:image" content="https://caddyserver.com/resources/images/caddy-open-graph.jpg">
+<meta name="twitter:url" value="https://caddyserver.com/">
+
+<!-- Algolia -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css">
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics (Stack Holdings) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2DLB04LK4P"></script>
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-2DLB04LK4P');
+</script>
+
+<link rel="stylesheet" href="/resources/css/docs.css">
+<link rel="stylesheet" href="/resources/css/chroma.css">
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<script type="text/javascript">window.CaddyfileDirectives = ["reverse_proxy","handle","uri","file_server","acme_server","import","method","tracing","rewrite","handle_path","redir","root","handle_errors","push","metrics","abort","bind","templates","respond","php_fastcgi","log","error","request_header","tls","basicauth","request_body","encode","header","route","map","try_files"];</script>
+<script src="/resources/js/jquery-3.4.1.min.js"></script>
+<script src="/resources/js/docs.js"></script>
+		<meta property="og:title" content="Static files quick-start - Caddy Documentation">
+		<meta name="twitter:title" value="Static files quick-start - Caddy Documentation">
+	</head>
+	<body>
+		<header>
+	<div>
+		<div id="logo-container">
+			<a href="/"><img src="/resources/images/caddy-wordmark.svg" id="logo" alt="Caddy"></a>
+			<div id="logo-docs">Documentation</div>
+		</div>
+		<div id="zerossl-project">
+			a <a href="https://zerossl.com"><img src="/resources/images/zerossl-logo.svg" id="zerossl-logo"></a> project
+		</div>
+	</div>
+	<!--TODO: add class="current" to the current link-->
+<nav>
+	<input type="search" id="search" placeholder="🔍 Search...">
+	<a href="/v2">v2 <span class="new">new</span></a>
+	<a href="/download">Download</a>
+	<a href="/docs/">Documentation</a>
+	<a href="https://caddy.community">Forum</a>
+	<a href="https://github.com/caddyserver/caddy">GitHub</a>
+	<a href="/account/">Account</a>
+	<a href="/business" class="red button">For business</a>
+</nav>
+</header>
+		<main>
+			<nav class="sidebar">
+	<ul>
+		<li><a href="/docs/">Welcome</a></li>
+		<li><a href="https://caddy.community/c/wiki/13">Wiki <img src="/resources/images/external-link.svg"></a></li>
+
+		<li class="heading">Get Caddy</li>
+		<li><a href="/docs/install">Install</a></li>
+		<li><a href="/docs/build">Build from source</a></li>
+
+		<li class="heading">Tutorials</li>
+		<li><a href="/docs/getting-started">Getting Started</a></li>
+		<li>
+			<a href="/docs/quick-starts">Quick-starts</a>
+			<ul>
+				<li><a href="/docs/quick-starts/api">Using the API</a></li>
+				<li><a href="/docs/quick-starts/caddyfile">Using a Caddyfile</a></li>
+				<li><a href="/docs/quick-starts/static-files">Static files</a></li>
+				<li><a href="/docs/quick-starts/reverse-proxy">Reverse proxy</a></li>
+				<li><a href="/docs/quick-starts/https">HTTPS</a></li>
+			</ul>
+		</li>
+		<li><a href="/docs/api-tutorial">Caddy API</a></li>
+		<li><a href="/docs/caddyfile-tutorial">Caddyfile</a></li>
+
+		<li class="heading">Reference</li>
+		<li><a href="/docs/command-line">Command Line</a></li>
+		<li><a href="/docs/api">API</a></li>
+		<li>
+			<a href="/docs/caddyfile">Caddyfile</a>
+			<ul>
+				<li><a href="/docs/caddyfile/concepts">Concepts</a></li>
+				<li><a href="/docs/caddyfile/directives">Directives</a></li>
+				<li><a href="/docs/caddyfile/matchers">Request matchers</a></li>
+				<li><a href="/docs/caddyfile/options">Global options</a></li>
+				<li><a href="/docs/caddyfile/patterns">Common patterns</a></li>
+			</ul>
+		</li>
+		<li><a href="/docs/modules/">Modules</a></li>
+		<li><a href="/docs/json/">JSON Config Structure</a></li>
+		<li><a href="/docs/automatic-https">Automatic HTTPS</a></li>
+		
+		<li class="heading">Articles</li>
+		<li><a href="/docs/v2-upgrade">Upgrading to Caddy 2</a></li>
+		<li><a href="/docs/conventions">Conventions</a></li>
+		<li><a href="/docs/config-adapters">Config Adapters</a></li>
+		<li><a href="/docs/logging">How Logging Works</a></li>
+		<li><a href="/docs/metrics">Monitoring Caddy</a></li>
+		<li><a href="/docs/architecture">Caddy Architecture</a></li>
+		<li><a href="/docs/running">Keep Caddy Running</a></li>
+
+		<li class="heading">Developers</li>
+		<li>
+			<a href="/docs/extending-caddy">Extending Caddy</a>
+			<ul>
+				<li><a href="/docs/extending-caddy/caddyfile">Caddyfile Support</a></li>
+				<li><a href="/docs/extending-caddy/config-adapters">Config Adapters</a></li>
+			</ul>
+		</li>
+		<li><a href="/docs/extending-caddy/namespaces">Module Namespaces</a></li>
+		<br>
+		<li><a href="/caddy-v1-docs-archive.tar.gz">v1 Docs <img src="/resources/images/external-link.svg"></a></li>
+	</ul>
+</nav>
+
+			<div class="article-container">
+				<div class="paper" id="paper1"></div>
+				<div class="paper" id="paper2"></div>
+				<div class="paper paper3">
+					<article><h1 id="static-files-quick-start">Static files quick-start</h1>
+<p>This guide will show you how to get a production-ready static file server up and running quickly.</p>
+<p><strong>Prerequisites:</strong></p>
+<ul>
+<li>Basic terminal / command line skills</li>
+<li><code>caddy</code> in your PATH</li>
+<li>A folder containing your website</li>
+</ul>
+<hr>
+<p>There are two easy ways to get a quick file server up and running. We'll show you two equivalent ways to do the same thing.</p>
+<h2 id="command-line">Command line</h2>
+<p>In your terminal, change to the root directory of your site and run:</p>
+<pre><code class="cmd bash">caddy file-server</code></pre>
+<p>If you get a permissions error, it probably means your OS does not allow you to bind to low ports -- so use a high port instead:</p>
+<pre><code class="cmd bash">caddy file-server --listen :2015</code></pre>
+<p>Then open <a href="http://localhost">localhost</a> (or <a href="http://localhost:2015">localhost:2015</a>) in your browser to see your site!</p>
+<p>If you don't have an index file but you want to display a file listing, use the <code>--browse</code> option:</p>
+<pre><code class="cmd bash">caddy file-server --browse</code></pre>
+<p>You can use another folder as the site root:</p>
+<pre><code class="cmd bash">caddy file-server --root ~/mysite</code></pre>
+<h2 id="caddyfile">Caddyfile</h2>
+<p>In the root of your site, create a file called <code>Caddyfile</code> with these contents:</p>
+<pre tabindex="0" class="chroma"><code><span class="line"><span class="cl"><span class="gh">localhost</span><span class="p">
+</span></span></span><span class="line"><span class="cl"><span class="p"></span>
+</span></span><span class="line"><span class="cl"><span class="k">file_server</span>
+</span></span></code></pre><p>If you don't have permission to bind to low ports, replace <code>localhost</code> with <code>localhost:2015</code> (or some other high port).</p>
+<p>Then, from the same directory, run:</p>
+<pre><code class="cmd bash">caddy run</code></pre>
+<p>You can then load <a href="https://localhost">localhost</a> (or whatever the address is in your config) to see your site!</p>
+<p>The <a href="/docs/caddyfile/directives/file_server"><code>file_server</code> directive</a> has more options for you to customize your site. Make sure to <a href="/docs/command-line#caddy-reload">reload</a> Caddy (or stop and start it again) when you change the Caddyfile!</p>
+<p>If you don't have an index file but you want to display a file listing, use the <code>browse</code> argument:</p>
+<pre tabindex="0" class="chroma"><code><span class="line"><span class="cl"><span class="gh">localhost</span><span class="p">
+</span></span></span><span class="line"><span class="cl"><span class="p"></span>
+</span></span><span class="line"><span class="cl"><span class="k">file_server</span> <span class="s">browse</span>
+</span></span></code></pre><p>You can also use another folder as the site root:</p>
+<pre tabindex="0" class="chroma"><code><span class="line"><span class="cl"><span class="gh">localhost</span><span class="p">
+</span></span></span><span class="line"><span class="cl"><span class="p"></span>
+</span></span><span class="line"><span class="cl"><span class="k">root</span> <span class="nd">*</span> <span class="s">/home/me/mysite</span>
+</span></span><span class="line"><span class="cl"><span class="k">file_server</span>
+</span></span></code></pre></article>
+				</div>
+			</div>
+			<div class="sidebar"></div>
+		</main>
+		<div class="wrapper">
+	<footer>
+		<div>
+			<img src="/resources/images/caddy-logo.svg" alt="Caddy" id="footer-logo">
+			An <a href="https://github.com/caddyserver/caddy">open source</a> Go community project
+			<br>
+			in partnership with <a href="https://www.ardanlabs.com/">Ardan Labs</a>
+			<br>
+			<small><a href="https://usefathom.com/ref/AUKNWU">Privacy-respecting analytics by Fathom</a></small>
+		</div>
+		<div class="copyright">
+			&copy; 2022 Stack Holdings. All rights reserved.
+			<br>
+			Caddy&reg; is a registered trademark of Stack Holdings GmbH.
+		</div>
+	</footer>
+</div>
+
+<!-- Fathom - beautiful, simple website analytics -->
+<script src="https://mule.caddyserver.com/script.js" site="GVMGKAKP" honor-dnt="true" defer></script>
+<!-- / Fathom -->
+
+	</body>
+</html>
